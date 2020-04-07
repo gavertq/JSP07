@@ -8,7 +8,7 @@ import java.util.ArrayList;
 
 public class BoardDAO {
 	private String url = "jdbc:oracle:thin:@192.168.0.49:1521:xe";
-	private String id = "java";
+	private String user = "java";
 	private String pwd="1234";
 	
 	private Connection con;
@@ -28,7 +28,7 @@ public class BoardDAO {
 		ArrayList<BoardDTO> list = new ArrayList<BoardDTO>();
 		
 		try {
-			con = DriverManager.getConnection(url, id, pwd);
+			con = DriverManager.getConnection(url, user, pwd);
 			ps = con.prepareStatement(sql);
 			rs = ps.executeQuery();
 			
@@ -58,7 +58,7 @@ public class BoardDAO {
 						" values (test_board_seq.nextval, ?, ?, ?, test_board_seq.currval, 0, 0)";
 		
 		try {
-			con = DriverManager.getConnection(url, id, pwd);
+			con = DriverManager.getConnection(url, user, pwd);
 			ps = con.prepareStatement(sql);
 			ps.setString(1, name);
 			ps.setString(2, title);
@@ -76,7 +76,7 @@ public class BoardDAO {
 		BoardDTO dto = new BoardDTO();
 		
 		try {
-			con = DriverManager.getConnection(url, id, pwd);
+			con = DriverManager.getConnection(url, user, pwd);
 			ps = con.prepareStatement(sql);
 			ps.setString(1, ListId);
 			rs = ps.executeQuery();
@@ -101,7 +101,7 @@ public class BoardDAO {
 	public void upHit(String ListId) {
 		String sql = "update test_board set hit=hit+1 where id="+ListId;
 		try {
-			con = DriverManager.getConnection(url, id, pwd);
+			con = DriverManager.getConnection(url, user, pwd);
 			ps = con.prepareStatement(sql);
 			ps.executeUpdate();
 		} catch (Exception e) {e.printStackTrace();}
@@ -111,13 +111,23 @@ public class BoardDAO {
 		String sql = "update test_board set name=?, title=?, content=? where id=?";
 		
 		try {
-			con = DriverManager.getConnection(url, id, pwd);
+			con = DriverManager.getConnection(url, user, pwd);
 			ps = con.prepareStatement(sql);
 			ps.setString(1, dto.getName());
 			ps.setString(2, dto.getTitle());
 			ps.setString(3, dto.getContent());
 			ps.setInt(4, dto.getId());
 			ps.executeUpdate();
+		} catch (Exception e) {e.printStackTrace();}
+	}
+	
+	public void delete(String DelId) {	
+		String sql = "delete test_board where id="+DelId;
+		
+		try {
+			con = DriverManager.getConnection(url, user, pwd);
+			ps = con.prepareStatement(sql);
+			ps.executeUpdate();			
 		} catch (Exception e) {e.printStackTrace();}
 	}
 }
