@@ -26,7 +26,7 @@ public class BoardDAO {
 	 select rownum from test_board; 하면 총 열 갯수 출력.
 	 이를 이용해서 중간에 글의 삭제가 일어나도 그 글의 id값만 삭제 되는 것이 아니라
 	 다시 1부터 최근 글 갯수까지 순차적으로 id값이 들어가도록 만들 수 있을까?
-	 id가 null이면 1, 그외에는 열의 총갯수가 id값으로 들어가게..
+	 id가 null이면 1, 그외에는 열의 총갯수에 +1한 값이 id값으로 들어가게..
 	 */
 	public ArrayList<BoardDTO> list() {
 		String sql = "select * from test_board order by id desc";
@@ -59,6 +59,10 @@ public class BoardDAO {
 	}
 	
 	public void write_save(String name, String title, String content) {
+		//현재 테이블의 열의 총 갯수 알아보기 ->메소드로 열 총 갯수 가져와서..
+		//추가로 중간에 삭제 일어나면, 삭제된 글의 id보다 작은 수는 그대로, 큰 수의 id는 1씩 줄이는 과정이 필요하다..;;
+		
+		
 		String sql = "insert into test_board(id, name, title, content, idgroup, step, indent)"+
 						" values (test_board_seq.nextval, ?, ?, ?, test_board_seq.currval, 0, 0)";
 		
