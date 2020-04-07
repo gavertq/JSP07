@@ -23,8 +23,8 @@
     out.print("<br>oriFile(실제 파일 이름) : " + oriFile);   
 %>
 	<hr>
-	test: <%=multi.getParameter("test") %><br>	<%--결과 잘 들어옴. 이전 파일을 multi로 만들었기 때문 --%>
-	test: <%=request.getParameter("test") %><br> <%--결과는 null multi라서 이건 장동 x--%>
+	test: <%=multi.getParameter("test") %><br>	<%--결과 잘 들어옴. Form의 enctype="multipart/form-data로 만들었기 때문 --%>
+	test: <%=request.getParameter("test") %><br> <%--결과는 null. multi라서 이건 작동 x--%>
 	
 
 </body>
