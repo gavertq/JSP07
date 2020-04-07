@@ -19,13 +19,13 @@ public class FileDown extends HttpServlet {
 		doPost(request,response);
 	}
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-    	//1.파일명 가져오기
+    	//1.파일명 가져오기(a태그로 가져온 fileName을 Param값으로 불러와서 저장)
     	String fileName = request.getParameter("fileName");
 		
 		//2. 경로 가져오기
-		String saveDir = super.getServletContext().getRealPath("fileUpDown");
-		File file = new File(saveDir+"/"+fileName);
-		System.out.println("파일명 : "+fileName);
+		String saveDir = super.getServletContext().getRealPath("fileUpDown");	//fileUpDown 폴더가 있는 경로를 가져와 저장
+		File file = new File(saveDir+"/"+fileName);	//'경로/파일명'으로 file을 만들어서
+		System.out.println("파일명 : "+fileName);	//콘솔에 파일명 출력
 		
 		//3. 파일 유형 가져오기
 		String mimeType = getServletContext().getMimeType(file.toString());
@@ -35,6 +35,7 @@ public class FileDown extends HttpServlet {
 			response.setContentType("application/octet-stream");
 			System.out.println("파일 형식을 모를때 실행 됨");
 		}
+		
 		// 4. 다운로드용 파일명을 설정
 		String downName = null;
 		System.out.println("request.getHeader : "+request.getHeader("user-agent"));
@@ -44,14 +45,14 @@ public class FileDown extends HttpServlet {
 		}
 		else{
 			downName = new String(fileName.getBytes("euc-kr"), "8859_1");
-			System.out.println("익스 플로러 실행");
+			System.out.println("익스 플로러에서 실행");
 		}
 		
 		// 5. 전송 객체에 현재 파일을 붙여서 보내겠다(content-disposition컨튼트를 처분)(attachment(부착)). 
 		response.setHeader("Content-Disposition","attachment;filename=\"" + downName + "\";");
 		
 		// 6. 요청된 파일을 읽어서 클라이언트쪽으로 저장한다.
-		FileInputStream fileInputStream = new FileInputStream(file);
+		FileInputStream fileInputStream = new FileInputStream(file);	//2번 경로를 가져올때 설정한 file
 		ServletOutputStream servletOutputStream = response.getOutputStream();
 		
 		byte b [] = new byte[1024];
