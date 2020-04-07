@@ -5,9 +5,12 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+
 <style type="text/css">
-td{text-align: right;}
+#td_right{text-align: right;}
+#td_center{text-align: center;}
 </style>
+
 </head>
 <body>list.jsp<br>
 <%@taglib uri = "http://java.sun.com/jsp/jstl/core" prefix="c" %>
@@ -24,10 +27,11 @@ td{text-align: right;}
 		</tr>
 		<c:forEach var="dto" items="${dao.list() }">
 		<tr>
-			<td>${dto.id }</td><td>${dto.name }</td>
-			<td><a href="content_view.jsp?id=${dto.id }">${dto.title }</a></td>
-			<td>${dto.savedate }</td><td>${dto.hit }</td>
-			<td>${dto.idgroup }</td><td>${dto.step }</td><td>${dto.indent }</td>
+			<td id="td_center">${dto.id }</td><td id="td_center">${dto.name }</td>
+			<td id="td_right"><a href="content_view.jsp?id=${dto.id }">${dto.title }</a></td>
+			<td>${dto.savedate }</td>
+			<td id="td_right">${dto.hit }</td><td id="td_right">${dto.idgroup }</td>
+			<td id="td_right">${dto.step }</td><td id="td_right">${dto.indent }</td>
 		</tr>
 		</c:forEach>
 		<tr>

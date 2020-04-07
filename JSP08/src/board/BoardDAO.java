@@ -106,4 +106,18 @@ public class BoardDAO {
 			ps.executeUpdate();
 		} catch (Exception e) {e.printStackTrace();}
 	}
+	
+	public void modify(BoardDTO dto) {	
+		String sql = "update test_board set name=?, title=?, content=? where id=?";
+		
+		try {
+			con = DriverManager.getConnection(url, id, pwd);
+			ps = con.prepareStatement(sql);
+			ps.setString(1, dto.getName());
+			ps.setString(2, dto.getTitle());
+			ps.setString(3, dto.getContent());
+			ps.setInt(4, dto.getId());
+			ps.executeUpdate();
+		} catch (Exception e) {e.printStackTrace();}
+	}
 }

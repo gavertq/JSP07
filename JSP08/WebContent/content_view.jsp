@@ -14,7 +14,7 @@
 	<c:set var="dto" value="${dao.contentView(param.id) }"/>
 
 	<div align="center">
-		<form action="" method="post">
+		<form action="modify.jsp" method="post">
 			<input type="hidden" name="id" value="${dto.id }">
 			<table border="1">
 			<tr>
