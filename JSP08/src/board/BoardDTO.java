@@ -43,8 +43,8 @@ id number(4) primary key,
 name varchar2(20),
 title varchar2(100),
 content varchar2(300),
-savedate date default sysdate,
-hit number(4) default 0,
+savedate date default sysdate,		기본적으로 시스템 날짜로 지정
+hit number(4) default 0,			기본적으로 0으로 세팅
 idgroup number(4),
 step number(4),
 indent number(4)

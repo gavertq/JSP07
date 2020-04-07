@@ -5,6 +5,9 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<style type="text/css">
+td{text-align: right;}
+</style>
 </head>
 <body>list.jsp<br>
 <%@taglib uri = "http://java.sun.com/jsp/jstl/core" prefix="c" %>
@@ -21,9 +24,10 @@
 		</tr>
 		<c:forEach var="dto" items="${dao.list() }">
 		<tr>
-			<td>${dto.id }</td><td>${dto.name }</td><td><a href="">${dto.title }</a></td>
-			<td>${dto.savedate }</td><td>${dto.hit }</td><td>${dto.idgroup }</td>
-			<td>${dto.step }</td><td>${dto.indent }</td>
+			<td>${dto.id }</td><td>${dto.name }</td>
+			<td><a href="content_view.jsp?id=${dto.id }">${dto.title }</a></td>
+			<td>${dto.savedate }</td><td>${dto.hit }</td>
+			<td>${dto.idgroup }</td><td>${dto.step }</td><td>${dto.indent }</td>
 		</tr>
 		</c:forEach>
 		<tr>
