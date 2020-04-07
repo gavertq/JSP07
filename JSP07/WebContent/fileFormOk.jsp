@@ -10,7 +10,7 @@
 </head>
 <body><h3>fileFormOk.jsp</h3><br>
 <%
-    String path = request.getRealPath("fileUpDown");
+    String path = request.getRealPath("fileUpDown");	//실질적으로는 request가 아니라 application으로 실제 경로를 가져와야한다
     out.print("fileFolder path : "+path);
     int size = 1024 * 1024 * 10; //10MB.. 용량 사이즈(1024kb가 1024개 있으면 1mb. 1mb 10개면 10mb)
     String file = "";	String oriFile = "";
