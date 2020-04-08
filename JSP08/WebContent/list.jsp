@@ -28,14 +28,17 @@
 		<c:forEach var="dto" items="${dao.list() }">
 		<tr>
 			<td id="td_center">${dto.id }</td><td id="td_center">${dto.name }</td>
-			<td id="td_right"><a href="content_view.jsp?id=${dto.id }">${dto.title }</a></td>
+			<td>
+				<c:forEach begin="1" end="${dto.indent }">-></c:forEach>
+				<a href="content_view.jsp?id=${dto.id }">${dto.title }</a>
+			</td>
 			<td>${dto.savedate }</td>
 			<td id="td_right">${dto.hit }</td><td id="td_right">${dto.idgroup }</td>
 			<td id="td_right">${dto.step }</td><td id="td_right">${dto.indent }</td>
 		</tr>
 		</c:forEach>
 		<tr>
-			<td colspan="8"><a href="write_view.jsp">글작성</a></td>
+			<td colspan="8"><a href="write_view.jsp" style="margin-left: 90%">글작성</a></td>
 		</tr>
 	</table>
 </div>

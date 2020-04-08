@@ -30,13 +30,13 @@
 				<th>제목</th><td><input type="text" value="${dto.title }" name="title"></td>
 			</tr>
 			<tr>
-				<th>내용</th><td><textarea name="content" rows="10" cols="50">${dto.content }</textarea></td>
+				<th>내용</th><td><textarea name="content" rows="10" cols="50" style="resize: none;">${dto.content }</textarea></td>
 			</tr>
 			<tr>
 				<th colspan="2"><input type="submit" value="수정">&nbsp;&nbsp;
 				<a href="list.jsp">목록이동</a>&nbsp;&nbsp;
 				<a href="delete.jsp?id=${dto.id }">삭제</a>&nbsp;&nbsp;
-				<a href="">답변</a>
+				<a href="reply_view.jsp?id=${dto.id }">답변</a>
 				</th>
 			</tr>	
 			</table>
