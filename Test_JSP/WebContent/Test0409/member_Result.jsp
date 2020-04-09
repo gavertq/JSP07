@@ -61,6 +61,13 @@
 	location.href='member.jsp';
 	</script>
 </c:when>
+<c:when test="${dto.getIdChkR().equals('none') }">
+	${flag = 1 }
+	<script>
+	alert("아이디 중복을 확인해주세요");
+	location.href='member.jsp';
+	</script>
+</c:when>
 </c:choose>
 
 <c:set var="regist_result" value="${dao.memberIn(dto) }"/>

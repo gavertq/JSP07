@@ -7,6 +7,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import org.apache.tomcat.util.buf.UDecoder;
+
 import com.sun.org.apache.regexp.internal.recompile;
 
 public class MemberDAO {
@@ -116,6 +118,21 @@ public class MemberDAO {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}	return members;
+	}
+	
+	public boolean idChk(String idChk) {
+		String sql = "select id from TestMembers where id=?";
+		
+		try {
+			con = DriverManager.getConnection(url, id, pwd);
+			ps = con.prepareStatement(sql);
+			ps.setString(1, idChk);
+			rs = ps.executeQuery();
+			if(rs.next()) return true;
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}	return false;
 	}
 
 }
